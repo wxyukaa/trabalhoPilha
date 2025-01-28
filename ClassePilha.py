@@ -18,7 +18,7 @@ class Pilha:
     def ElementoDoTopo(self):
         if not self.PilhaVazia():
             return self.elem[self.topo]
-
+        
     def Empilha(self, x):
         if not self.PilhaCheia():
             self.topo += 1
@@ -26,11 +26,16 @@ class Pilha:
 
     def Desempilha(self):
         if not self.PilhaVazia():
-            x = self.elem[self.topo]
-            self.topo -= 1
+            x = self.elem[self.topo]  # Pega o elemento do topo
+            self.elem[self.topo] = None  # Mantém o espaço vazio para reutilização
+            self.topo -= 1  # Atualiza o índice do topo
+
             if self.PilhaVazia():
-                self.InicializaPilha()
+                self.InicializaPilha()  # Reseta a pilha se necessário
+            
             return x
+
+
         
     def mostrar_elementos(self):
         return self.elem
