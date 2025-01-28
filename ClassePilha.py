@@ -1,40 +1,36 @@
+
 class Pilha:
-    def ___init___(self, tam_max):
-        self.elemento = [None] * tam_max
-        self.topo = -1
+    def __init__(self, tam_max):
+        self.elem = [None] * tam_max
+        self.topo = -1 
         self.tam_max = tam_max
+
 
     def InicializaPilha(self):
         self.topo = -1
 
-    def PilhaVazia(self) -> bool:
-        if self.topo == -1:
-            vazia = True
-        else:
-            vazia = False
-        return vazia
-    
-    def PilhaCheia(self) -> bool:
-        if self.topo == self.tam_max - 1:
-            cheia = True
-        else:
-            cheia = False
-        return cheia
-    
-    def ElementoDoTopo(self) -> int:
-        if not self.PilhaVazia:
-            return self.elemento[self.topo]
+    def PilhaVazia(self):
+        return self.topo == -1
 
-    def Empilha(self, x: int):
-        if not self.PilhaCheia:
-            self.topo = self.topo + 1
-            self.elemento[self.topo] = x
+    def PilhaCheia(self):
+        return self.topo == self.tam_max - 1
 
-    def Desempilha(self) -> int:
-        if not self.PilhaVazia:
-            x = self.elemento[self.topo]
-            self.topo = self.topo - 1
-            if self.PilhaVazia:
-                self.InicializaPilha
-        return x
-    
+    def ElementoDoTopo(self):
+        if not self.PilhaVazia():
+            return self.elem[self.topo]
+
+    def Empilha(self, x):
+        if not self.PilhaCheia():
+            self.topo += 1
+            self.elem[self.topo] = x
+
+    def Desempilha(self):
+        if not self.PilhaVazia():
+            x = self.elem[self.topo]
+            self.topo -= 1
+            if self.PilhaVazia():
+                self.InicializaPilha()
+            return x
+        
+    def mostrar_elementos(self):
+        return self.elem
