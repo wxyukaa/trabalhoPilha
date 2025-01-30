@@ -1,5 +1,6 @@
 from Pilha import Pilha
 import random
+import os
 
 def cria_embaralha_pilha(qtde_pilhas: int) -> list:
     '''
@@ -78,6 +79,8 @@ def valida_vitoria(pilhas_jogo, qtde_pilhas) -> bool:
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def main():
+
+
     exit = False
     while not exit:
         qtde_pilhas = int(input("Quantos números diferentes serão distribuídos entre as pilhas? Escolha de 1 a 7: "))
@@ -90,6 +93,7 @@ def main():
     win = False
 
     while not win:
+
         for i, pilha in enumerate(pilhas_jogo):
             print(f"Pilha {i + 1}: {pilha.mostrar_elementos()}")
 
@@ -99,12 +103,20 @@ def main():
 
         if validade_entradas(pilha_origem,pilha_destino,qtde_pilhas):
             if condicoes_troca(pilhas_jogo,pilha_origem,pilha_destino):
+                os.system('cls' if os.name == 'nt' else 'clear')
                 po = pilhas_jogo[pilha_origem - 1].Desempilha()
                 pilhas_jogo[pilha_destino - 1].Empilha(po)
-            else:  
+            else:
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print('Troca Inválida.Selecione novamente: ')           
         else:
+            os.system('cls' if os.name == 'nt' else 'clear')
             print('Troca Inválida.Selecione novamente: ')
+
+    for i, pilha in enumerate(pilhas_jogo):
+        print(f"Pilha {i + 1}: {pilha.mostrar_elementos()}")
+
+    print('Parabéns! Você venceu!')
 
 if __name__ == '__main__':
     main()
